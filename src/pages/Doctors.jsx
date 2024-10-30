@@ -177,7 +177,7 @@ function Doctors() {
 
                 <div className="mt-6 flex items-center justify-between">
                   <div className="text-gray-600">
-                    <span className="font-medium text-lg">${doctor.consultationFee}</span>
+                    <span className="font-medium text-lg">₹{doctor.consultationFee}</span>
                     <span className="text-sm"> per visit</span>
                   </div>
                   <button

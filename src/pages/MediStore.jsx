@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { db } from '../config/firebase';
 import { collection, query, getDocs } from 'firebase/firestore';
@@ -22,9 +23,11 @@ function MediStore() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showFilters, setShowFilters] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   
   const { currentUser } = useAuth();
   const { cart, addToCart } = useCart();
+  const navigate = useNavigate();
 
   const categories = [
     'all',
@@ -61,6 +64,11 @@ function MediStore() {
   }, []);
 
   const handleAddToCart = async (product) => {
+    if (!currentUser) {
+      setShowLoginPrompt(true);
+      return;
+    }
+
     try {
       await addToCart(product);
       setShowCart(true);
@@ -174,6 +182,51 @@ function MediStore() {
           onClose={() => setShowFilters(false)}
         />
       </div>
+
+      {/* Login Prompt Modal */}
+      <AnimatePresence>
+        {showLoginPrompt && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black z-50"
+              onClick={() => setShowLoginPrompt(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.75 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.75 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            >
+              <div className="bg-white rounded-lg shadow-xl p-6 max-w-sm w-full">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Sign in Required</h3>
+                <p className="text-gray-600 mb-6">
+                  Please sign in or create an account to add items to your cart.
+                </p>
+                <div className="flex space-x-4">
+                  <button
+                    onClick={() => {
+                      setShowLoginPrompt(false);
+                      navigate('/patient-portal');
+                    }}
+                    className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                  >
+                    Sign In
+                  </button>
+                  <button
+                    onClick={() => setShowLoginPrompt(false)}
+                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
