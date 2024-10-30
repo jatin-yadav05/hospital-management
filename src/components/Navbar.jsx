@@ -30,7 +30,7 @@ function Navbar() {
   const handleLogout = async () => {
     try {
       await logout();
-      navigate('/');
+      navigate('/home');
     } catch (error) {
       console.error('Failed to log out', error);
     }

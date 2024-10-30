@@ -26,18 +26,18 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Navigate to="/home" replace />
+        element: <Navigate to="home" replace />
       },
       {
-        path: "/home",
+        path: "home",
         element: <Home />
       },
       {
-        path: "/doctors",
+        path: "doctors",
         element: <Doctors />
       },
       {
-        path: "/appointments",
+        path: "appointments",
         element: (
           <ProtectedRoute>
             <Appointments />
@@ -45,19 +45,19 @@ const router = createBrowserRouter([
         )
       },
       {
-        path: "/contact",
+        path: "contact",
         element: <Contact />
       },
       {
-        path: "/services",
+        path: "services",
         element: <Services />
       },
       {
-        path: "/patient-portal",
+        path: "patient-portal",
         element: <PatientPortal />
       },
       {
-        path: "/dashboard",
+        path: "dashboard",
         element: (
           <ProtectedRoute>
             <Dashboard />
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
         )
       },
       {
-        path: "/profile",
+        path: "profile",
         element: (
           <ProtectedRoute>
             <Profile />
@@ -73,7 +73,7 @@ const router = createBrowserRouter([
         )
       },
       {
-        path: "/health-metrics",
+        path: "health-metrics",
         element: (
           <ProtectedRoute>
             <HealthMetrics />
@@ -81,11 +81,11 @@ const router = createBrowserRouter([
         )
       },
       {
-        path: "/medistore",
+        path: "medistore",
         element: <MediStore />
       },
       {
-        path: "/order-history",
+        path: "order-history",
         element: (
           <ProtectedRoute>
             <OrderHistory />
@@ -93,7 +93,7 @@ const router = createBrowserRouter([
         )
       },
       {
-        path: "/checkout",
+        path: "checkout",
         element: (
           <ProtectedRoute>
             <Checkout />
@@ -106,7 +106,9 @@ const router = createBrowserRouter([
       }
     ]
   }
-]);
+], {
+  basename: "/hospital-management"
+});
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
