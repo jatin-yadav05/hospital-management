@@ -96,7 +96,7 @@ function Navbar() {
                   className="flex items-center space-x-2 text-gray-700 hover:text-blue-600"
                 >
                   <UserCircleIcon className="h-8 w-8" />
-                  <span>{currentUser.email}</span>
+                  <span className='max-[1080px]:hidden'>{currentUser.email}</span>
                 </button>
                 
                 {showProfileMenu && (

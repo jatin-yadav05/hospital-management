@@ -6,7 +6,6 @@ function ChatBot({ hideChat }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Check if device is mobile
   useEffect(() => {
     const checkIfMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -18,33 +17,27 @@ function ChatBot({ hideChat }) {
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
-  // Hide chat when cart or filters are open
   useEffect(() => {
     if (hideChat) {
       setIsOpen(false);
     }
   }, [hideChat]);
 
-  if (hideChat) return null; // Don't render if hideChat is true
+  if (hideChat) return null;
 
   return (
-    <div className={`fixed ${isMobile ? 'bottom-0 right-0 left-0' : 'bottom-6 right-6'} z-40`}>
+    <div className={`fixed ${isMobile ? 'bottom-0 inset-x-0 px-4 pb-4' : 'bottom-6 right-6'} z-40`}>
       <AnimatePresence>
         {isOpen ? (
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, scale: 0.5, y: 50 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.5, y: 50 }}
             transition={{ duration: 0.3 }}
-            className={`
-              bg-white shadow-xl overflow-hidden
-              ${isMobile 
-                ? 'w-full h-[80vh] rounded-t-lg' 
-                : 'w-[380px] sm:w-[400px] rounded-lg'
-              }
-            `}
+            className={`bg-white shadow-xl overflow-hidden ${
+              isMobile ? 'rounded-lg w-full' : 'rounded-lg w-[380px] sm:w-[400px]'
+            }`}
           >
-            {/* Header */}
             <div className="bg-blue-600 p-4 flex justify-between items-center">
               <h3 className="text-white font-medium flex items-center">
                 <ChatBubbleLeftIcon className="h-5 w-5 mr-2" />
@@ -59,8 +52,7 @@ function ChatBot({ hideChat }) {
               </button>
             </div>
 
-            {/* Chat Interface */}
-            <div className={`${isMobile ? 'h-full' : 'h-[600px]'} w-full`}>
+            <div className={`${isMobile ? 'h-[70vh]' : 'h-[600px]'} w-full`}>
               <iframe
                 src="https://www.chatbase.co/chatbot-iframe/nCvWGJAY3TDgzNyMD4sm6"
                 width="100%"
@@ -82,7 +74,7 @@ function ChatBot({ hideChat }) {
               bg-blue-600 text-white shadow-lg hover:bg-blue-700 
               transition-colors duration-200
               ${isMobile 
-                ? 'w-full py-4 rounded-t-lg flex items-center justify-center space-x-2' 
+                ? 'w-full py-4 rounded-lg flex items-center justify-center space-x-2' 
                 : 'p-4 rounded-full'
               }
             `}
