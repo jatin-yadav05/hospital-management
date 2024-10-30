@@ -56,12 +56,12 @@ function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
-              <Link to="/" className="text-blue-600 text-2xl font-bold">MediCare</Link>
+              <Link to="/home" className="text-blue-600 text-2xl font-bold">MediCare</Link>
             </div>
             
             {/* Desktop Menu */}
             <div className="hidden md:flex md:ml-10 space-x-8">
-              <NavItem title="Home" icon={<HomeIcon className="w-5 h-5" />} to="/" />
+              <NavItem title="Home" icon={<HomeIcon className="w-5 h-5" />} to="/home" />
               <NavItem title="Doctors" icon={<UserGroupIcon className="w-5 h-5" />} to="/doctors" />
               <NavItem title="Appointments" icon={<CalendarIcon className="w-5 h-5" />} to="/appointments" />
               <NavItem title="Contact" icon={<PhoneIcon className="w-5 h-5" />} to="/contact" />
@@ -165,7 +165,7 @@ function Navbar() {
       {isOpen && (
         <div className="md:hidden absolute w-full bg-white z-50">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <MobileNavItem title="Home" icon={<HomeIcon className="w-5 h-5" />} to="/" />
+            <MobileNavItem title="Home" icon={<HomeIcon className="w-5 h-5" />} to="/home" />
             <MobileNavItem title="Doctors" icon={<UserGroupIcon className="w-5 h-5" />} to="/doctors" />
             <MobileNavItem title="Appointments" icon={<CalendarIcon className="w-5 h-5" />} to="/appointments" />
             <MobileNavItem title="Contact" icon={<PhoneIcon className="w-5 h-5" />} to="/contact" />

@@ -8,7 +8,7 @@ import {
 
 function Footer() {
   const quickLinks = [
-    { name: 'Home', path: '/' },
+    { name: 'Home', path: '/home' },
     { name: 'About Us', path: '/about' },
     { name: 'Services', path: '/services' },
     { name: 'Doctors', path: '/doctors' },

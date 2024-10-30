@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChatBubbleLeftIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
-function ChatBot() {
+function ChatBot({ hideChat }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -18,8 +18,17 @@ function ChatBot() {
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
+  // Hide chat when cart or filters are open
+  useEffect(() => {
+    if (hideChat) {
+      setIsOpen(false);
+    }
+  }, [hideChat]);
+
+  if (hideChat) return null; // Don't render if hideChat is true
+
   return (
-    <div className={`fixed ${isMobile ? 'bottom-0 right-0 left-0' : 'bottom-6 right-6'} z-50`}>
+    <div className={`fixed ${isMobile ? 'bottom-0 right-0 left-0' : 'bottom-6 right-6'} z-40`}>
       <AnimatePresence>
         {isOpen ? (
           <motion.div

@@ -12,6 +12,7 @@ import ProductCard from '../components/store/ProductCard';
 import CartSidebar from '../components/store/CartSidebar';
 import ProductFilters from '../components/store/ProductFilters';
 import { useCart } from '../context/CartContext';
+import ChatBot from '../components/ChatBot';
 
 function MediStore() {
   const [products, setProducts] = useState([]);
@@ -161,19 +162,16 @@ function MediStore() {
           ))}
         </div>
 
-        {/* Cart Sidebar */}
+        <ChatBot hideChat={showCart || showFilters} />
+
         <CartSidebar
           isOpen={showCart}
           onClose={() => setShowCart(false)}
-          cart={cart}
         />
 
-        {/* Filters Sidebar */}
         <ProductFilters
           isOpen={showFilters}
           onClose={() => setShowFilters(false)}
-          selectedCategory={selectedCategory}
-          onSelectCategory={setSelectedCategory}
         />
       </div>
     </div>

@@ -32,17 +32,17 @@ function CartSidebar({ isOpen, onClose }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.5 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black z-40"
+            className="fixed inset-0 bg-black z-50"
             onClick={onClose}
           />
 
-          {/* Sidebar */}
+          {/* Sidebar - Updated classes for mobile */}
           <motion.div
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'tween' }}
-            className="fixed right-0 top-0 h-full w-full max-w-md bg-white shadow-xl z-50"
+            className="fixed right-0 top-0 h-full w-full sm:w-96 bg-white shadow-xl z-50"
           >
             <div className="flex flex-col h-full">
               {/* Header */}
