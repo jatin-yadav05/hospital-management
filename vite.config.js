@@ -4,5 +4,9 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/hospital-management/', // This matches your repository name
+  base: process.env.NODE_ENV === 'production' ? '/hospital-management/' : '/',
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets'
+  }
 })

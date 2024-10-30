@@ -19,13 +19,16 @@ import { CartProvider } from './context/CartContext'
 import OrderHistory from './pages/OrderHistory'
 import Checkout from './pages/Checkout'
 
+const isProduction = process.env.NODE_ENV === 'production';
+const baseUrl = isProduction ? '/hospital-management' : '';
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
       {
-        path: "/",
+        path: "",
         element: <Navigate to="home" replace />
       },
       {
@@ -107,7 +110,7 @@ const router = createBrowserRouter([
     ]
   }
 ], {
-  basename: "/hospital-management"
+  basename: baseUrl
 });
 
 createRoot(document.getElementById('root')).render(
